@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{50E57ABB-0E95-4145-AE28-1195DD3297F7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Nikse.SubtitleEdit</RootNamespace>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <AssemblyName>SubtitleEdit</AssemblyName>
+    <ApplicationIcon>..\..\..\Downloads\subtitleedit-master\src\Icons\SE.ico</ApplicationIcon>
+    <UseXamMacFullFramework>true</UseXamMacFullFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <UseRefCounting>true</UseRefCounting>
+    <UseSGen>true</UseSGen>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <PackageSigningKey>Developer ID Installer</PackageSigningKey>
+    <XamMacArch>x86_64</XamMacArch>
+    <Profiling>false</Profiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <UseRefCounting>true</UseRefCounting>
+    <UseSGen>true</UseSGen>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <CreatePackage>true</CreatePackage>
+    <CodeSigningKey>Developer ID Application</CodeSigningKey>
+    <EnableCodeSigning>true</EnableCodeSigning>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <Profiling>false</Profiling>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="UILogic\" />
+    <Folder Include="Windows\" />
+    <Folder Include="Windows\Help\" />
+    <Folder Include="Windows\Tools\" />
+    <Folder Include="Windows\Sync\" />
+    <Folder Include="Windows\File\" />
+    <Folder Include="Windows\SubtitleEdit\" />
+    <Folder Include="Windows\Edit\" />
+    <Folder Include="UILogic\VideoPlayer\" />
+    <Folder Include="UILogic\VideoPlayer\AVFoundationPlayer\" />
+    <Folder Include="UILogic\VideoPlayer\VLC\" />
+    <Folder Include="Windows\Video\" />
+    <Folder Include="UILogic\SpellCheck\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="AppDelegate.designer.cs">
+      <DependentUpon>AppDelegate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\MessageBox.cs" />
+    <Compile Include="UILogic\Constants.cs" />
+    <Compile Include="Windows\MainWindow.cs" />
+    <Compile Include="Windows\MainWindow.designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindowController.cs" />
+    <Compile Include="Windows\MainWindowController.designer.cs">
+      <DependentUpon>MainWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs" />
+    <Compile Include="UILogic\SubtitleTableDataSource.cs" />
+    <Compile Include="UILogic\SubtitleTableDelegate.cs" />
+    <Compile Include="Windows\Help\About.cs" />
+    <Compile Include="Windows\Help\About.designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Help\AboutController.cs" />
+    <Compile Include="Windows\Help\AboutController.designer.cs">
+      <DependentUpon>AboutController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\SubtitleTableContextMenuDelegate.cs" />
+    <Compile Include="UILogic\SubtitleTextDelegate.cs" />
+    <Compile Include="UILogic\FindReplaceHelper.cs" />
+    <Compile Include="UILogic\MainWindowDelegate.cs" />
+    <Compile Include="Windows\Tools\Renumber.cs" />
+    <Compile Include="Windows\Tools\Renumber.designer.cs">
+      <DependentUpon>Renumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\RenumberController.cs" />
+    <Compile Include="Windows\Tools\RenumberController.designer.cs">
+      <DependentUpon>RenumberController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Sync\AdjustAllTimes.cs" />
+    <Compile Include="Windows\Sync\AdjustAllTimes.designer.cs">
+      <DependentUpon>AdjustAllTimes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Sync\AdjustAllTimesController.cs" />
+    <Compile Include="Windows\Sync\AdjustAllTimesController.designer.cs">
+      <DependentUpon>AdjustAllTimesController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Sync\IAdjustAction.cs" />
+    <Compile Include="Windows\Sync\AdjustmentSelection.cs" />
+    <Compile Include="Windows\Sync\ChangeFrameRate.cs" />
+    <Compile Include="Windows\Sync\ChangeFrameRate.designer.cs">
+      <DependentUpon>ChangeFrameRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Sync\ChangeFrameRateController.cs" />
+    <Compile Include="Windows\Sync\ChangeFrameRateController.designer.cs">
+      <DependentUpon>ChangeFrameRateController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\SubtitleTableView.cs" />
+    <Compile Include="UILogic\IOpenSubtitle.cs" />
+    <Compile Include="Windows\File\OpenWithManualChosenEncoding.cs" />
+    <Compile Include="Windows\File\OpenWithManualChosenEncoding.designer.cs">
+      <DependentUpon>OpenWithManualChosenEncoding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\File\OpenWithManualChosenEncodingController.cs" />
+    <Compile Include="Windows\File\OpenWithManualChosenEncodingController.designer.cs">
+      <DependentUpon>OpenWithManualChosenEncodingController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\File\EncodingTableDelegate.cs" />
+    <Compile Include="Windows\File\EncodingTableDataSource.cs" />
+    <Compile Include="Windows\File\OpenWithManualChoosenEncodingSearchText.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesWindow.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesWindow.designer.cs">
+      <DependentUpon>PreferencesWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SubtitleEdit\PreferencesWindowController.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesWindowController.designer.cs">
+      <DependentUpon>PreferencesWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SubtitleEdit\PreferencesGeneral.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesGeneralController.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesGeneral.designer.cs">
+      <DependentUpon>PreferencesGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SubtitleEdit\PreferencesGeneralController.designer.cs">
+      <DependentUpon>PreferencesGeneralController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SubtitleEdit\PreferencesShortcuts.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesShortcutsController.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesShortcuts.designer.cs">
+      <DependentUpon>PreferencesShortcuts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SubtitleEdit\PreferencesShortcutsController.designer.cs">
+      <DependentUpon>PreferencesShortcutsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\File\RestoreAutoBackup.cs" />
+    <Compile Include="Windows\File\RestoreAutoBackup.designer.cs">
+      <DependentUpon>RestoreAutoBackup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\File\RestoreAutoBackupController.cs" />
+    <Compile Include="Windows\File\RestoreAutoBackupController.designer.cs">
+      <DependentUpon>RestoreAutoBackupController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\File\AutoBackupTableDelegate.cs" />
+    <Compile Include="Windows\File\AutoBackupTableDataSource.cs" />
+    <Compile Include="Windows\File\AutoBackupItem.cs" />
+    <Compile Include="Windows\Tools\RemoveTextForHearingImpaired.cs" />
+    <Compile Include="Windows\Tools\RemoveTextForHearingImpaired.designer.cs">
+      <DependentUpon>RemoveTextForHearingImpaired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\RemoveTextForHearingImpairedController.cs" />
+    <Compile Include="Windows\Tools\RemoveTextForHearingImpairedController.designer.cs">
+      <DependentUpon>RemoveTextForHearingImpairedController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\EditInterjections.cs" />
+    <Compile Include="Windows\Tools\EditInterjections.designer.cs">
+      <DependentUpon>EditInterjections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\EditInterjectionsController.cs" />
+    <Compile Include="Windows\Tools\EditInterjectionsController.designer.cs">
+      <DependentUpon>EditInterjectionsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\StringListTableDataSource.cs" />
+    <Compile Include="UILogic\StringListTableDelegate.cs" />
+    <Compile Include="UILogic\IStringListTableDelegate.cs" />
+    <Compile Include="Windows\Edit\MultipleReplace.cs" />
+    <Compile Include="Windows\Edit\MultipleReplaceController.designer.cs">
+      <DependentUpon>MultipleReplaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Edit\MultipleReplace.designer.cs">
+      <DependentUpon>MultipleReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Edit\MultipleReplaceController.cs" />
+    <Compile Include="Windows\Edit\MultipleReplaceRulesTableDataSource.cs" />
+    <Compile Include="UILogic\PreviewItem.cs" />
+    <Compile Include="UILogic\PreviewTableDataSource.cs" />
+    <Compile Include="UILogic\PreviewTableDelegate.cs" />
+    <Compile Include="Windows\Edit\MultipleRulesTableDelegate.cs" />
+    <Compile Include="UILogic\UIStringExtensions.cs" />
+    <Compile Include="Windows\Tools\FixCommonErrors.cs" />
+    <Compile Include="Windows\Tools\FixCommonErrors.designer.cs">
+      <DependentUpon>FixCommonErrors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\FixCommonErrorsController.cs" />
+    <Compile Include="Windows\Tools\FixCommonErrorsController.designer.cs">
+      <DependentUpon>FixCommonErrorsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\FixCommonErrorsRulesTableDataSource.cs" />
+    <Compile Include="Windows\Tools\FixCommonErrorsTableDelegate.cs" />
+    <Compile Include="Windows\Tools\FixItem.cs" />
+    <Compile Include="Windows\Tools\FixCommonErrorsPreviewItem.cs" />
+    <Compile Include="Windows\Tools\FixCommonErrorsPreviewTableDataSource.cs" />
+    <Compile Include="Windows\Tools\FixCommonErrorsPreviewTableDelegate.cs" />
+    <Compile Include="UILogic\IChangeSubtitleTableSelection.cs" />
+    <Compile Include="UILogic\ISubtitleTextChanged.cs" />
+    <Compile Include="UILogic\ColorExtensions.cs" />
+    <Compile Include="UILogic\FindReplaceInfo.cs" />
+    <Compile Include="Windows\Edit\Find.cs" />
+    <Compile Include="Windows\Edit\Find.designer.cs">
+      <DependentUpon>Find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Edit\FindController.cs" />
+    <Compile Include="Windows\Edit\FindController.designer.cs">
+      <DependentUpon>FindController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Edit\Replace.cs" />
+    <Compile Include="Windows\Edit\Replace.designer.cs">
+      <DependentUpon>Replace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Edit\ReplaceController.cs" />
+    <Compile Include="Windows\Edit\ReplaceController.designer.cs">
+      <DependentUpon>ReplaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\VideoPlayer\IVideoPlayer.cs" />
+    <Compile Include="UILogic\MainWindowSplitViewHDelegate.cs" />
+    <Compile Include="UILogic\VideoPlayer\VLC\LibVlcPlayerView.cs" />
+    <Compile Include="UILogic\VideoPlayer\VLC\LibVlcPlayerView.designer.cs">
+      <DependentUpon>LibVlcPlayerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\VideoPlayer\VLC\LibVlcDynamic.cs" />
+    <Compile Include="UILogic\VideoPlayer\VLC\LibVlcPlayerViewController.cs" />
+    <Compile Include="UILogic\VideoPlayer\VLC\LibVlcPlayerViewController.designer.cs">
+      <DependentUpon>LibVlcPlayerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\VideoPlayer\AVFoundationPlayer\AVFPlayer.cs" />
+    <Compile Include="UILogic\VideoPlayer\AVFoundationPlayer\AVFPlayerController.cs" />
+    <Compile Include="UILogic\VideoPlayer\AVFoundationPlayer\AVFPlayer.designer.cs">
+      <DependentUpon>AVFPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\VideoPlayer\AVFoundationPlayer\AVFPlayerController.designer.cs">
+      <DependentUpon>AVFPlayerController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\VideoPlayer\AVFoundationPlayer\AVFVideoView.cs" />
+    <Compile Include="UILogic\VideoPlayer\VLC\VlcVideoView.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesVideo.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesVideoController.cs" />
+    <Compile Include="Windows\SubtitleEdit\PreferencesVideo.designer.cs">
+      <DependentUpon>PreferencesVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SubtitleEdit\PreferencesVideoController.designer.cs">
+      <DependentUpon>PreferencesVideoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Video\AddWaveForm.cs" />
+    <Compile Include="Windows\Video\AddWaveForm.designer.cs">
+      <DependentUpon>AddWaveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Video\AddWaveFormController.cs" />
+    <Compile Include="Windows\Video\AddWaveFormController.designer.cs">
+      <DependentUpon>AddWaveFormController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\MainWindowSplitViewVDelegate.cs" />
+    <Compile Include="UILogic\AudioVisualizer.cs" />
+    <Compile Include="UILogic\AudioVisualizerBase.cs" />
+    <Compile Include="UILogic\AudioVisualizerView.cs" />
+    <Compile Include="Windows\Edit\SpellCheck.cs" />
+    <Compile Include="Windows\Edit\SpellCheck.designer.cs">
+      <DependentUpon>SpellCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Edit\SpellCheckController.cs" />
+    <Compile Include="Windows\Edit\SpellCheckController.designer.cs">
+      <DependentUpon>SpellCheckController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogic\SpellCheck\SpellChecker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Windows\MainMenu.xib" />
+    <InterfaceDefinition Include="Windows\MainWindow.xib" />
+    <InterfaceDefinition Include="Windows\Help\About.xib" />
+    <InterfaceDefinition Include="Windows\Tools\Renumber.xib" />
+    <InterfaceDefinition Include="Windows\Sync\AdjustAllTimes.xib" />
+    <InterfaceDefinition Include="Windows\Sync\ChangeFrameRate.xib" />
+    <InterfaceDefinition Include="Windows\File\OpenWithManualChosenEncoding.xib" />
+    <InterfaceDefinition Include="Windows\SubtitleEdit\PreferencesWindow.xib" />
+    <InterfaceDefinition Include="Windows\SubtitleEdit\PreferencesGeneral.xib" />
+    <InterfaceDefinition Include="Windows\SubtitleEdit\PreferencesShortcuts.xib" />
+    <InterfaceDefinition Include="Windows\File\RestoreAutoBackup.xib" />
+    <InterfaceDefinition Include="Windows\Tools\RemoveTextForHearingImpaired.xib" />
+    <InterfaceDefinition Include="Windows\Tools\EditInterjections.xib" />
+    <InterfaceDefinition Include="Windows\Edit\MultipleReplace.xib" />
+    <InterfaceDefinition Include="Windows\Tools\FixCommonErrors.xib" />
+    <InterfaceDefinition Include="Windows\Edit\Find.xib" />
+    <InterfaceDefinition Include="Windows\Edit\Replace.xib" />
+    <InterfaceDefinition Include="UILogic\VideoPlayer\VLC\LibVlcPlayerView.xib" />
+    <InterfaceDefinition Include="UILogic\VideoPlayer\AVFoundationPlayer\AVFPlayer.xib" />
+    <InterfaceDefinition Include="Windows\SubtitleEdit\PreferencesVideo.xib" />
+    <InterfaceDefinition Include="Windows\Video\AddWaveForm.xib" />
+    <InterfaceDefinition Include="Windows\Edit\SpellCheck.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\connect.png" />
+    <BundleResource Include="Resources\Donate.png" />
+    <BundleResource Include="Resources\Find.png" />
+    <BundleResource Include="Resources\FixCommonErrors.png" />
+    <BundleResource Include="Resources\Help.png" />
+    <BundleResource Include="Resources\New.png" />
+    <BundleResource Include="Resources\Open.png" />
+    <BundleResource Include="Resources\Replace.png" />
+    <BundleResource Include="Resources\Save.png" />
+    <BundleResource Include="Resources\SaveAs.png" />
+    <BundleResource Include="Resources\Settings.png" />
+    <BundleResource Include="Resources\SpellCheck.png" />
+    <BundleResource Include="Resources\VideoToggle.png" />
+    <BundleResource Include="Resources\VisualSync.png" />
+    <BundleResource Include="Resources\WaveformToggle.png" />
+    <BundleResource Include="Resources\icon.icns" />
+    <BundleResource Include="Resources\gtk_media_pause.png" />
+    <BundleResource Include="Resources\gtk_media_play.png" />
+    <BundleResource Include="Resources\gtk_media_stop.png" />
+    <BundleResource Include="Resources\vlc.png" />
+    <BundleResource Include="Resources\Mute.png" />
+    <BundleResource Include="Resources\Speaker.png" />
+    <BundleResource Include="Resources\VideoToggleActive.png" />
+    <BundleResource Include="Resources\WaveformToggleActive.png" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="Flat" ResourceNamePolicy="FileName" />
+          <TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentSwitchBody="True" IndentBlocksInsideExpressions="True" AnonymousMethodBraceStyle="NextLine" PropertyBraceStyle="NextLine" PropertyGetBraceStyle="NextLine" PropertySetBraceStyle="NextLine" EventBraceStyle="NextLine" EventAddBraceStyle="NextLine" EventRemoveBraceStyle="NextLine" StatementBraceStyle="NextLine" ElseNewLinePlacement="NewLine" CatchNewLinePlacement="NewLine" FinallyNewLinePlacement="NewLine" WhileNewLinePlacement="DoNotCare" ArrayInitializerWrapping="DoNotChange" ArrayInitializerBraceStyle="NextLine" BeforeMethodDeclarationParentheses="False" BeforeMethodCallParentheses="False" BeforeConstructorDeclarationParentheses="False" NewLineBeforeConstructorInitializerColon="NewLine" NewLineAfterConstructorInitializerColon="SameLine" BeforeDelegateDeclarationParentheses="False" NewParentheses="False" SpacesBeforeBrackets="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\libse\LibSE.csproj">
+      <Project>{3E3CB28F-3A7B-430F-9EB3-0D6C1E53B753}</Project>
+      <Name>LibSE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MacLibSe\MacLibSe.csproj">
+      <Project>{013A2F4B-D3CF-4902-BE8B-E41BF38E017F}</Project>
+      <Name>MacLibSe</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

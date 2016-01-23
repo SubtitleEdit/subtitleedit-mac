@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Foundation;
+using AppKit;
+using Nikse.SubtitleEdit.Core;
+using System.Text;
+
+namespace AVFoundationPlayer
+{
+    public partial class AVFPlayer : AppKit.NSView
+    {
+        #region Constructors
+
+        // Called when created from unmanaged code
+        public AVFPlayer(IntPtr handle)
+            : base(handle)
+        {
+            Initialize();
+        }
+
+        // Called when created directly from a XIB file
+        [Export("initWithCoder:")]
+        public AVFPlayer(NSCoder coder)
+            : base(coder)
+        {
+            Initialize();
+        }
+
+        // Shared initialization code
+        void Initialize()
+        {
+        }
+
+        #endregion
+
+
+        public NSButton PlayPauseButton
+        {
+            get 
+            {
+                return _buttonPlayPause;    
+            }
+        }
+
+        public NSButton StopButton
+        {
+            get 
+            {
+                return _buttonStop;    
+            }
+        }
+
+        public NSView VideoView
+        {
+            get 
+            {
+                return _customView;   
+            }
+        }
+
+        public void SetCurrentPosition(double currentPositionInseconds, double durationInSeconds)
+        {
+            var pos = new TimeCode(currentPositionInseconds * 1000.0);
+            var dur = new TimeCode(durationInSeconds * 1000.0);
+            _labelPosition.StringValue = pos.ToShortDisplayString() + " / " + dur.ToShortDisplayString();
+
+            _positionSlider.DoubleValue = currentPositionInseconds / durationInSeconds * 100.0;
+        }
+
+        public NSSlider PositionSlider
+        {
+            get 
+            {
+                return _positionSlider;   
+            }
+        }
+
+        public NSSlider VolumeSlider
+        {
+            get 
+            {
+                return _volumeSlider;   
+            }
+        }
+
+        public void ShowSubtitle(Nikse.SubtitleEdit.Core.Paragraph p)
+        {
+            if (p == null)
+            { 
+                _subtitleWebView.MainFrame.LoadHtmlString(new NSString("<body style='background-color:black'></body>"), null);
+            }
+            else
+            {
+                var sb = new StringBuilder();
+                bool first = true;
+                foreach (var line in p.Text.SplitToLines())
+                {
+                    if (!first)
+                    {
+                        sb.Append("<br />");
+                    }
+                    sb.Append(line);
+                    first = false;
+                }
+                _subtitleWebView.MainFrame.LoadHtmlString(new NSString("<body style='background-color:black;color:white;text-align:center'>" + sb.ToString() +  "<body>"), null);
+            }
+
+        }
+    }
+}

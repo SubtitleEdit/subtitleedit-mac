@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleEdit", "SubtitleEdit\SubtitleEdit.csproj", "{50E57ABB-0E95-4145-AE28-1195DD3297F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSE", "libse\LibSE.csproj", "{3E3CB28F-3A7B-430F-9EB3-0D6C1E53B753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacLibSe", "MacLibSe\MacLibSe.csproj", "{013A2F4B-D3CF-4902-BE8B-E41BF38E017F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{013A2F4B-D3CF-4902-BE8B-E41BF38E017F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{013A2F4B-D3CF-4902-BE8B-E41BF38E017F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{013A2F4B-D3CF-4902-BE8B-E41BF38E017F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{013A2F4B-D3CF-4902-BE8B-E41BF38E017F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E3CB28F-3A7B-430F-9EB3-0D6C1E53B753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E3CB28F-3A7B-430F-9EB3-0D6C1E53B753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E3CB28F-3A7B-430F-9EB3-0D6C1E53B753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E3CB28F-3A7B-430F-9EB3-0D6C1E53B753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E57ABB-0E95-4145-AE28-1195DD3297F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E57ABB-0E95-4145-AE28-1195DD3297F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E57ABB-0E95-4145-AE28-1195DD3297F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E57ABB-0E95-4145-AE28-1195DD3297F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.AfterDelegateDeclarationParameterComma = True
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/x-csharp
+		$3.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
