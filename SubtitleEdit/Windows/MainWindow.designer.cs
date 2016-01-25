@@ -73,6 +73,9 @@ namespace Nikse.SubtitleEdit.Windows
 		AppKit.NSToolbarItem _toolbarShowVideo { get; set; }
 
 		[Outlet]
+		AppKit.NSToolbarItem _toolbarSpellCheck { get; set; }
+
+		[Outlet]
 		AppKit.NSBox _videoBox { get; set; }
 
 		[Outlet]
@@ -125,29 +128,14 @@ namespace Nikse.SubtitleEdit.Windows
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_videoBox != null) {
-				_videoBox.Dispose ();
-				_videoBox = null;
+			if (_audioViz != null) {
+				_audioViz.Dispose ();
+				_audioViz = null;
 			}
 
 			if (_audioVizBox != null) {
 				_audioVizBox.Dispose ();
 				_audioVizBox = null;
-			}
-
-			if (_toolbarShowAudioViz != null) {
-				_toolbarShowAudioViz.Dispose ();
-				_toolbarShowAudioViz = null;
-			}
-
-			if (_toolbarShowVideo != null) {
-				_toolbarShowVideo.Dispose ();
-				_toolbarShowVideo = null;
-			}
-
-			if (_audioViz != null) {
-				_audioViz.Dispose ();
-				_audioViz = null;
 			}
 
 			if (_buttonAddWaveform != null) {
@@ -230,6 +218,21 @@ namespace Nikse.SubtitleEdit.Windows
 				_subtitletableContextMenuSplit = null;
 			}
 
+			if (_toolbarShowAudioViz != null) {
+				_toolbarShowAudioViz.Dispose ();
+				_toolbarShowAudioViz = null;
+			}
+
+			if (_toolbarShowVideo != null) {
+				_toolbarShowVideo.Dispose ();
+				_toolbarShowVideo = null;
+			}
+
+			if (_videoBox != null) {
+				_videoBox.Dispose ();
+				_videoBox = null;
+			}
+
 			if (_videoPlayerView != null) {
 				_videoPlayerView.Dispose ();
 				_videoPlayerView = null;
@@ -288,6 +291,11 @@ namespace Nikse.SubtitleEdit.Windows
 			if (toolbarSubtitleFormatComboBox != null) {
 				toolbarSubtitleFormatComboBox.Dispose ();
 				toolbarSubtitleFormatComboBox = null;
+			}
+
+			if (_toolbarSpellCheck != null) {
+				_toolbarSpellCheck.Dispose ();
+				_toolbarSpellCheck = null;
 			}
 		}
 	}

@@ -316,6 +316,7 @@
                     <toolbarItem implicitItemIdentifier="6078C588-B203-4FAD-88F3-607E3CEA46C6" label="Find" paletteLabel="Find" tag="-1" image="Find" id="97"/>
                     <toolbarItem implicitItemIdentifier="A4A05B11-C362-476D-8967-A33832349EE3" label="Show/hide audio visualizer" paletteLabel="Show/hide audio visualizer" tag="-1" image="WaveformToggleActive" id="jfa-6H-apK"/>
                     <toolbarItem implicitItemIdentifier="28D3855A-3326-4916-A66B-95C49DC1BF7F" label="Show/hide video" paletteLabel="Show/hide video" tag="-1" image="VideoToggleActive" id="Yfn-WL-Pzh"/>
+                    <toolbarItem implicitItemIdentifier="448C0A8C-F960-4D50-808B-5873336D0CA4" label="Spell check" paletteLabel="Spell check" tag="-1" image="SpellCheck" id="ZnP-4h-64m"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="35"/>
@@ -324,6 +325,7 @@
                     <toolbarItem reference="47"/>
                     <toolbarItem reference="97"/>
                     <toolbarItem reference="46"/>
+                    <toolbarItem reference="ZnP-4h-64m"/>
                     <toolbarItem reference="47"/>
                     <toolbarItem reference="65"/>
                     <toolbarItem reference="47"/>
@@ -355,6 +357,7 @@
                 <outlet property="_subtitletableContextMenuSplit" destination="vTR-L0-cWA" id="6r8-g9-DTS"/>
                 <outlet property="_toolbarShowAudioViz" destination="jfa-6H-apK" id="j9J-t5-hUy"/>
                 <outlet property="_toolbarShowVideo" destination="Yfn-WL-Pzh" id="z9x-yZ-Osp"/>
+                <outlet property="_toolbarSpellCheck" destination="ZnP-4h-64m" id="CTk-vc-VJJ"/>
                 <outlet property="_videoBox" destination="wXv-m6-7KO" id="t3g-nH-YE6"/>
                 <outlet property="_videoPlayerView" destination="7UI-7L-bPp" id="nSX-z0-YNl"/>
                 <outlet property="subtitleTable" destination="7" id="79"/>
@@ -412,6 +415,7 @@
         <image name="Replace" width="32" height="32"/>
         <image name="Save" width="32" height="32"/>
         <image name="SaveAs" width="32" height="32"/>
+        <image name="SpellCheck" width="32" height="32"/>
         <image name="VideoToggleActive" width="32" height="32"/>
         <image name="WaveformToggleActive" width="32" height="32"/>
     </resources>

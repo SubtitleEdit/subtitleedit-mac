@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using AppKit;
 using Nikse.SubtitleEdit.Core;
 using System.Linq;
+using System.Text;
+using Foundation;
 
 namespace SpellCheck
 {
@@ -17,12 +19,10 @@ namespace SpellCheck
         }
 
         public bool Spell(string word)
-        {
-   //         var x = new Foundation.NSOrthography(new Foundation.NSCoder());
-     //       nint wordCount;
-            var result = _nativeSpellChecker.CheckSpelling(word, 0);
- //           var results = _nativeSpellChecker.CheckString(word, new Foundation.NSRange(0, word.Length), new Foundation.NSTextCheckingTypes(), new Foundation.NSDictionary(), 0, out x, out wordCount);
-            return result.Length == 0;
+        { 
+            nint wordCount = 0;
+            var res = _nativeSpellChecker.CheckSpelling(word, 0, "en",true, 0, out wordCount); 
+            return res.Location != 0;
         }
 
         public List<string> Suggest(string word)
@@ -67,6 +67,32 @@ namespace SpellCheck
                 _nativeSpellChecker.Language = value;
             }
         }
+
+
+        public const string WordSplitChars = " -.,?!:;\"“”()[]{}|<>/+\r\n¿¡…—–♪♫„“";
+
+        public static List<SpellCheckWord> Split(string s)
+        {
+            var list = new List<SpellCheckWord>();
+            var sb = new StringBuilder();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (SpellChecker.WordSplitChars.Contains(s[i]))
+                {
+                    if (sb.Length > 0)
+                        list.Add(new SpellCheckWord { Text = sb.ToString(), Index = i - sb.Length });
+                    sb.Clear();
+                }
+                else
+                {
+                    sb.Append(s[i]);
+                }
+            }
+            if (sb.Length > 0)
+                list.Add(new SpellCheckWord { Text = sb.ToString(), Index = s.Length - 1 - sb.Length });
+            return list;
+        }
+
 
     }
 

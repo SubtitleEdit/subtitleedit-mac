@@ -191,6 +191,10 @@ namespace Nikse.SubtitleEdit.Windows
             {
                 (WindowController as MainWindowController).Replace();
             };
+            _toolbarSpellCheck.Activated += (object sender, EventArgs e) =>
+            {
+                (WindowController as MainWindowController).SpellCheckAndGrammer();
+            };
 
             toolbarSubtitleFormat.Label = "Format";
             toolbarSubtitleFormatComboBox.RemoveAll();
