@@ -408,6 +408,13 @@
     <Compile Include="VobSub\VobSubMergedPack.cs" />
     <Compile Include="VobSub\VobSubPack.cs" />
     <Compile Include="VobSub\VobSubParser.cs" />
+    <Compile Include="RichTextToPlainText.cs" />
+    <Compile Include="Interfaces\IDoSpell.cs" />
+    <Compile Include="Interfaces\IRtfTextConverter.cs" />
+    <Compile Include="SubtitleFormats\F4Rtf.cs" />
+    <Compile Include="SpellCheck\SpellCheckWord.cs" />
+    <Compile Include="SpellCheck\SpellCheckWordLists.cs" />
+    <Compile Include="SpellCheck\UndoObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

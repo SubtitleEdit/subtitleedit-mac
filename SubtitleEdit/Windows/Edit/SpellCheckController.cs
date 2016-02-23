@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Nikse.SubtitleEdit.UILogic;
+using Nikse.SubtitleEdit.Core.Dictionaries;
 
 namespace Edit
 {
@@ -26,6 +27,7 @@ namespace Edit
         private List<SpellCheckWord> _words;
         private List<string> _skipAllList = new List<string>();
         private bool _abort = false;
+        private List<string> _namesEtcList = new List<string>();
 
         public SpellCheckController(IntPtr handle)
             : base(handle)
@@ -49,6 +51,12 @@ namespace Edit
             base.AwakeFromNib();
         }
 
+        void LoadNames()
+        {
+            var namesList = new NamesList(Configuration.DictionariesFolder, "en", Configuration.Settings.WordLists.UseOnlineNamesEtc, Configuration.Settings.WordLists.NamesEtcUrl);
+            _namesEtcList = namesList.GetAllNames();
+        }
+
         public void InitializeSpellCheck()
         {
             _spellChecker = new SpellChecker("en");
@@ -57,6 +65,7 @@ namespace Edit
             _currentParagraphIndex = 0;
             _words = SpellChecker.Split(_subtitle.Paragraphs[0].Text);
             _wordsIndex = -1;
+            LoadNames();
             PrepareNextWord();
         }
 
@@ -67,12 +76,17 @@ namespace Edit
 
         public void SkipAll()
         {
-            string word = _currentWord.ToLower().Trim();
+            string wordOriginalCasing = _currentWord.Trim();
+            string word = wordOriginalCasing.ToLower();
             _skipAllList.Add(word);
             _skipAllList.Add(word.ToUpper());
             if (word.Length > 0)
             {
                 _skipAllList.Add(word.Substring(0, 1).ToUpper() + word.Substring(1));
+            }
+            if (!_skipAllList.Contains(wordOriginalCasing))
+            {
+                _skipAllList.Add(wordOriginalCasing);
             }
             PrepareNextWord();
         }
@@ -138,6 +152,10 @@ namespace Edit
                                     spelledOk = true;
                                 }
 
+                                if (!spelledOk && _namesEtcList.Contains(_currentWord))
+                                {
+                                    spelledOk = true;
+                                }
 
                                 if (!spelledOk)
                                 {
