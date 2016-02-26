@@ -414,6 +414,20 @@
     <Compile Include="SpellCheck\SpellCheckWord.cs" />
     <Compile Include="SpellCheck\SpellCheckWordLists.cs" />
     <Compile Include="SpellCheck\UndoObject.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle16.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle21.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle23.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle24.cs" />
+    <Compile Include="SubtitleFormats\ImageLogicAutocaption.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle37.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle39.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle45.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle55.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle58.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle79.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle80.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle81.cs" />
+    <Compile Include="SubtitleFormats\UnknownSubtitle82.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

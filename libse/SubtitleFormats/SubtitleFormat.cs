@@ -10,6 +10,8 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
     {
         private static IList<SubtitleFormat> _allSubtitleFormats;
 
+        protected static readonly char[] SplitCharColon = { ':' };
+
         /// <summary>
         /// Formats supported by Subtitle Edit
         /// </summary>
@@ -71,6 +73,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     new FLVCoreCuePoints(),
                     new Footage(),
                     new GpacTtxt(),
+                    new ImageLogicAutocaption(),
                     new IssXml(),
                     new ItunesTimedText(),
                     new Json(),
@@ -98,6 +101,8 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     new SamiModern(),
                     new SamiYouTube(),
                     new Scenarist(),
+//                    new ScenaristClosedCaptions(),
+//                    new ScenaristClosedCaptionsDropFrame(),
                     new SmilTimesheetData(),
                     new SoftNiSub(),
                     new SoftNicolonSub(),
@@ -147,7 +152,6 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     new YouTubeTranscript(),
                     new YouTubeTranscriptOneLine(),
                     new ZeroG(),
-
                     // new Idx(),
                     new UnknownSubtitle1(),
                     new UnknownSubtitle2(),
@@ -164,11 +168,15 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     new UnknownSubtitle13(),
                     new UnknownSubtitle14(),
                     new UnknownSubtitle15(),
+                    new UnknownSubtitle16(),
                     new UnknownSubtitle17(),
                     new UnknownSubtitle18(),
                     new UnknownSubtitle19(),
                     new UnknownSubtitle20(),
+                    new UnknownSubtitle21(),
                     new UnknownSubtitle22(),
+                    new UnknownSubtitle23(),
+                    new UnknownSubtitle24(),
                     new UnknownSubtitle25(),
                     new UnknownSubtitle26(),
                     new UnknownSubtitle27(),
@@ -181,12 +189,15 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     new UnknownSubtitle34(),
                     new UnknownSubtitle35(),
                     new UnknownSubtitle36(),
+                    new UnknownSubtitle37(),
                     new UnknownSubtitle38(),
+                    new UnknownSubtitle39(),
                     new UnknownSubtitle40(),
                     new UnknownSubtitle41(),
                     new UnknownSubtitle42(),
                     new UnknownSubtitle43(),
                     new UnknownSubtitle44(),
+                    new UnknownSubtitle45(),
                     new UnknownSubtitle46(),
                     new UnknownSubtitle47(),
                     new UnknownSubtitle48(),
@@ -196,8 +207,10 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     new UnknownSubtitle52(),
                     new UnknownSubtitle53(),
                     new UnknownSubtitle54(),
+                    new UnknownSubtitle55(),
                     new UnknownSubtitle56(),
                     new UnknownSubtitle57(),
+                    new UnknownSubtitle58(),
                     new UnknownSubtitle59(),
                     new UnknownSubtitle60(),
                     new UnknownSubtitle61(),
@@ -218,6 +231,10 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     new UnknownSubtitle76(),
                     new UnknownSubtitle77(),
                     new UnknownSubtitle78(),
+                    new UnknownSubtitle79(),
+                    new UnknownSubtitle80(),
+                    new UnknownSubtitle81(),
+                    new UnknownSubtitle82(),
                 };
 
                 string path = Configuration.PluginsDirectory;
@@ -344,9 +361,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         public static int FramesToMillisecondsMax999(double frames)
         {
             int ms = (int)Math.Round(frames * (TimeCode.BaseUnit / Configuration.Settings.General.CurrentFrameRate));
-            if (ms > 999)
-                ms = 999;
-            return ms;
+            return Math.Min(ms, 999);
         }
 
         public virtual bool HasStyleSupport
@@ -382,6 +397,41 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             {
                 return true;
             }
+        }
+
+        protected TimeCode DecodeTimeCodeFramesTwoParts(string[] parts)
+        {
+            if (parts == null)
+                return new TimeCode(0, 0, 0, 0);
+            if (parts.Length != 2)
+                throw new InvalidOperationException();
+            // 00:00
+            return new TimeCode(0, 0, int.Parse(parts[0]), FramesToMillisecondsMax999(int.Parse(parts[1])));
+        }
+
+        protected TimeCode DecodeTimeCodeFramesThreeParts(string[] parts)
+        {
+            if (parts == null)
+                return new TimeCode(0, 0, 0, 0);
+            if (parts.Length != 3)
+                throw new InvalidOperationException();
+            // 00:00:00
+            return new TimeCode(0, int.Parse(parts[0]), int.Parse(parts[1]), FramesToMillisecondsMax999(int.Parse(parts[2])));
+        }
+
+        protected TimeCode DecodeTimeCodeFramesFourParts(string[] parts)
+        {
+            if (parts == null)
+                return new TimeCode(0, 0, 0, 0);
+            if (parts.Length != 4)
+                throw new InvalidOperationException();
+            // 00:00:00:00
+            return new TimeCode(int.Parse(parts[0]), int.Parse(parts[1]), int.Parse(parts[2]), FramesToMillisecondsMax999(int.Parse(parts[3])));
+        }
+
+        protected TimeCode DecodeTimeCodeFrames(string part, char[] splitChars)
+        {
+            return DecodeTimeCodeFramesFourParts(part.Split(splitChars, StringSplitOptions.RemoveEmptyEntries));
         }
 
     }
