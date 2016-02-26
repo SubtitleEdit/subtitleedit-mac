@@ -330,6 +330,7 @@ namespace Nikse.SubtitleEdit.Windows
             _audioVisualizerView.SetFrameSize(_audioViz.Superview.Frame.Size);
             _audioVisualizerView.BecomeFirstResponder();
             _audioViz.Hidden = true;
+            ShowHideAudioVisualizer(); //TODO: Use settings when audio visualizer has been rewritten!
         }
 
         internal void ShowAddAudioVisualizer()

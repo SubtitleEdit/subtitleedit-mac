@@ -290,6 +290,7 @@
       <DependentUpon>SpellCheckController.cs</DependentUpon>
     </Compile>
     <Compile Include="UILogic\SpellCheck\SpellChecker.cs" />
+    <Compile Include="UILogic\ISubtitleParagraphShow.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainMenu.xib" />

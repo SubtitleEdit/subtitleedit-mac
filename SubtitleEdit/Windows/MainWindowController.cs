@@ -22,7 +22,7 @@ using Video;
 
 namespace Nikse.SubtitleEdit.Windows
 {
-    public partial class MainWindowController : NSWindowController, IAdjustAction, IOpenSubtitle, IChangeSubtitleTableSelection, ISubtitleTextChanged
+    public partial class MainWindowController : NSWindowController, IAdjustAction, IOpenSubtitle, IChangeSubtitleTableSelection, ISubtitleTextChanged, ISubtitleParagraphShow
     {
 
         private Subtitle _subtitle;
@@ -834,6 +834,12 @@ namespace Nikse.SubtitleEdit.Windows
             ReloadDataKeepSelection();
         }
 
+        public void SubtitleParagraphShow(int index)
+        {          
+            ShowSubtitleRow(index);
+            ReloadDataKeepSelection();
+        }
+
         public double CurrentFrameRate
         {
             get { return Configuration.Settings.General.CurrentFrameRate; }
@@ -1121,9 +1127,9 @@ namespace Nikse.SubtitleEdit.Windows
 
         public void SpellCheckAndGrammer()
         {
-            using (var controller = new SpellCheckController(Window.Subtitle))
+            using (var controller = new SpellCheckController(Window.Subtitle, this))
             {
-                controller.Window.ReleasedWhenClosed = true;
+                controller.Window.ReleasedWhenClosed = true; 
                 NSApplication.SharedApplication.RunModalForWindow(controller.Window); // window's WillClose event stops modal
             }    
         }

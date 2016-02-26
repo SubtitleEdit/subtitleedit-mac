@@ -28,10 +28,22 @@ namespace Edit
 		AppKit.NSButton _buttonChangeAll { get; set; }
 
 		[Outlet]
+		AppKit.NSButton _buttonGoogleIt { get; set; }
+
+		[Outlet]
 		AppKit.NSButton _buttonSkipAll { get; set; }
 
 		[Outlet]
 		AppKit.NSButton _buttonSkipOne { get; set; }
+
+		[Outlet]
+		AppKit.NSButton _buttonUseSuggestion { get; set; }
+
+		[Outlet]
+		AppKit.NSButton _buttonUseSuggestionAlways { get; set; }
+
+		[Outlet]
+		AppKit.NSButton _checkAutoFixNames { get; set; }
 
 		[Outlet]
 		AppKit.NSPopUpButton _popUpLanguages { get; set; }
@@ -40,33 +52,19 @@ namespace Edit
 		AppKit.NSProgressIndicator _progressBar { get; set; }
 
 		[Outlet]
+		AppKit.NSTableView _tableSuggestions { get; set; }
+
+		[Outlet]
+		AppKit.NSTextView _textViewFullText { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField _textWordNotFound { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_textWordNotFound != null) {
-				_textWordNotFound.Dispose ();
-				_textWordNotFound = null;
-			}
-
-			if (_buttonChange != null) {
-				_buttonChange.Dispose ();
-				_buttonChange = null;
-			}
-
-			if (_buttonChangeAll != null) {
-				_buttonChangeAll.Dispose ();
-				_buttonChangeAll = null;
-			}
-
-			if (_buttonSkipOne != null) {
-				_buttonSkipOne.Dispose ();
-				_buttonSkipOne = null;
-			}
-
-			if (_buttonSkipAll != null) {
-				_buttonSkipAll.Dispose ();
-				_buttonSkipAll = null;
+			if (_buttonAbort != null) {
+				_buttonAbort.Dispose ();
+				_buttonAbort = null;
 			}
 
 			if (_buttonAddToNames != null) {
@@ -79,6 +77,31 @@ namespace Edit
 				_buttonAddToUserDictionary = null;
 			}
 
+			if (_buttonChange != null) {
+				_buttonChange.Dispose ();
+				_buttonChange = null;
+			}
+
+			if (_buttonChangeAll != null) {
+				_buttonChangeAll.Dispose ();
+				_buttonChangeAll = null;
+			}
+
+			if (_buttonGoogleIt != null) {
+				_buttonGoogleIt.Dispose ();
+				_buttonGoogleIt = null;
+			}
+
+			if (_buttonSkipAll != null) {
+				_buttonSkipAll.Dispose ();
+				_buttonSkipAll = null;
+			}
+
+			if (_buttonSkipOne != null) {
+				_buttonSkipOne.Dispose ();
+				_buttonSkipOne = null;
+			}
+
 			if (_popUpLanguages != null) {
 				_popUpLanguages.Dispose ();
 				_popUpLanguages = null;
@@ -89,9 +112,34 @@ namespace Edit
 				_progressBar = null;
 			}
 
-			if (_buttonAbort != null) {
-				_buttonAbort.Dispose ();
-				_buttonAbort = null;
+			if (_textViewFullText != null) {
+				_textViewFullText.Dispose ();
+				_textViewFullText = null;
+			}
+
+			if (_textWordNotFound != null) {
+				_textWordNotFound.Dispose ();
+				_textWordNotFound = null;
+			}
+
+			if (_buttonUseSuggestion != null) {
+				_buttonUseSuggestion.Dispose ();
+				_buttonUseSuggestion = null;
+			}
+
+			if (_buttonUseSuggestionAlways != null) {
+				_buttonUseSuggestionAlways.Dispose ();
+				_buttonUseSuggestionAlways = null;
+			}
+
+			if (_checkAutoFixNames != null) {
+				_checkAutoFixNames.Dispose ();
+				_checkAutoFixNames = null;
+			}
+
+			if (_tableSuggestions != null) {
+				_tableSuggestions.Dispose ();
+				_tableSuggestions = null;
 			}
 		}
 	}
