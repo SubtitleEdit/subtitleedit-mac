@@ -65,6 +65,7 @@
     <Compile Include="Point.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="ContentAlignment.cs" />
+    <Compile Include="EncodingHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

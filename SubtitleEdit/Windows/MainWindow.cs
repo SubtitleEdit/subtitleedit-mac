@@ -11,6 +11,8 @@ using System.Timers;
 using System.Linq;
 using UILogic;
 using CoreGraphics;
+using Nikse.SubtitleEdit.Core.DetectEncoding;
+using MacLibSe;
 
 namespace Nikse.SubtitleEdit.Windows
 {
@@ -206,7 +208,7 @@ namespace Nikse.SubtitleEdit.Windows
 
             toolbarEncodingComboBox.RemoveAll();
             toolbarEncodingComboBox.Add(new NSString(Encoding.UTF8.BodyName));
-            foreach (var ei in Encoding.GetEncodings())
+            foreach (var ei in EncodingHelper.GetEncodings())
             {
                 if (ei.Name != Encoding.UTF8.BodyName && ei.CodePage >= 949 && !ei.Name.Contains("EBCDIC") && ei.CodePage != 1047) //Configuration.Settings.General.EncodingMinimumCodePage)
                     toolbarEncodingComboBox.Add(new NSString(ei.CodePage + ": " + ei.Name));
@@ -274,12 +276,19 @@ namespace Nikse.SubtitleEdit.Windows
 
         public Encoding GetEncoding()
         {
-            var selectedValue = toolbarEncodingComboBox.SelectedValue.ToString();
-            foreach (var ei in Encoding.GetEncodings())
+            var selectedValue = toolbarEncodingComboBox.SelectedValue.ToString();           
+            foreach (var ei in EncodingHelper.GetEncodings())
             {
                 if (selectedValue.StartsWith(ei.CodePage + ":"))
                 {
-                    return ei.GetEncoding();
+                    try
+                    {
+                        return ei.GetEncoding();
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show("Encoding is missing: " + exception.Message);
+                    }
                 }
             }
             return Encoding.UTF8;

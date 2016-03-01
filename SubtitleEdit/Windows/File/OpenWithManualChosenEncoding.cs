@@ -6,6 +6,7 @@ using System.Text;
 using AppKit;
 using Foundation;
 using Nikse.SubtitleEdit.Core;
+using MacLibSe;
 
 namespace File
 {
@@ -94,7 +95,7 @@ namespace File
 
             _allEncodings = new List<Encoding>();
             _allEncodings.Add(Encoding.UTF8);
-            foreach (var ei in Encoding.GetEncodings())
+            foreach (var ei in EncodingHelper.GetEncodings())
             {
                 try
                 {
