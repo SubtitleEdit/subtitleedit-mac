@@ -63,8 +63,8 @@ namespace Nikse.SubtitleEdit.Windows
 
         public void SetTimeCode(Paragraph p)
         {
-            _startTime.StringValue = p.StartTime.ToString();
-            _duration.StringValue = p.Duration.ToShortString();
+            _startTime.StringValue = string.Format("{0:00}:{1:00}:{2:00}{3}{4:000}", p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator, p.StartTime.Milliseconds);
+            _duration.StringValue = string.Format("{0:0.000}", p.Duration.TotalSeconds);
         }
 
         public MainWindow(IntPtr handle)
@@ -210,7 +210,7 @@ namespace Nikse.SubtitleEdit.Windows
             toolbarEncodingComboBox.Add(new NSString(Encoding.UTF8.BodyName));
             foreach (var ei in EncodingHelper.GetEncodings())
             {
-                if (ei.Name != Encoding.UTF8.BodyName && ei.CodePage >= 949 && !ei.Name.Contains("EBCDIC") && ei.CodePage != 1047) //Configuration.Settings.General.EncodingMinimumCodePage)
+                if (ei.Name != Encoding.UTF8.BodyName && ei.CodePage >= 949 && !ei.Name.StartsWith("IBM") && ei.CodePage != 1047) //Configuration.Settings.General.EncodingMinimumCodePage)
                     toolbarEncodingComboBox.Add(new NSString(ei.CodePage + ": " + ei.Name));
             }
             SetEncoding(Encoding.UTF8.BodyName);
@@ -314,12 +314,27 @@ namespace Nikse.SubtitleEdit.Windows
                 _startTimeStepper.IntValue = 0;
             };
 
+            _startTime.Activated += (object sender, EventArgs e) =>
+            {
+                var ms = TimeCode.ParseToMilliseconds(_startTime.StringValue);
+                (WindowController as MainWindowController).SetStartTime(ms);
+            };
+
             _durationStepper.MinValue = -10000;
             _durationStepper.Increment = 100;
             _durationStepper.Activated += (object sender, EventArgs e) =>
             {
                 (WindowController as MainWindowController).UpdateEndTime(_durationStepper.IntValue);
                 _durationStepper.IntValue = 0;
+            };
+
+            _duration.Activated += (object sender, EventArgs e) =>
+            {
+                double d;
+                if (double.TryParse(_duration.StringValue, out d))
+                {
+                    (WindowController as MainWindowController).UpdateDuration(d * 1000.0);
+                }
             };
 
             FixMacButtonTexts();

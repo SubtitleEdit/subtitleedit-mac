@@ -551,12 +551,34 @@ namespace Nikse.SubtitleEdit.Windows
             ReloadDataKeepSelection();
         }
 
+        public void SetStartTime(double milliseconds)
+        {
+            if (_selectedParagraph == null)
+                return;
+
+            var durationMs = _selectedParagraph.Duration.TotalMilliseconds;
+            _selectedParagraph.StartTime.TotalMilliseconds = milliseconds;
+            _selectedParagraph.EndTime.TotalMilliseconds = milliseconds + durationMs;
+            Window.SetTimeCode(_selectedParagraph);
+            ReloadDataKeepSelection();
+        }
+
         public void UpdateEndTime(int millisecondsToAdd)
         {
             if (_selectedParagraph == null)
                 return;
 
             _selectedParagraph.EndTime.TotalMilliseconds += millisecondsToAdd;
+            Window.SetTimeCode(_selectedParagraph);
+            ReloadDataKeepSelection();
+        }
+
+        public void UpdateDuration(double milliseconds)
+        {
+            if (_selectedParagraph == null)
+                return;
+
+            _selectedParagraph.EndTime.TotalMilliseconds = _selectedParagraph.StartTime.TotalMilliseconds +  milliseconds;
             Window.SetTimeCode(_selectedParagraph);
             ReloadDataKeepSelection();
         }
@@ -893,7 +915,7 @@ namespace Nikse.SubtitleEdit.Windows
 
         public void SetTitle()
         {
-            string title = "Subtitle Edit 3.4 beta 1";
+            string title = "Subtitle Edit 3.4 alpha 2";
             if (!string.IsNullOrWhiteSpace(_subtitleFileName))
                 title += " - " + _subtitleFileName;
             Window.Title = title;

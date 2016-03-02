@@ -50,7 +50,7 @@ namespace Nikse.SubtitleEdit.Windows.Help
 				labelTitle.StringValue = String.Format("{0} {1}.{2}.{3}, build {4}", _languageGeneral.Title, versionInfo[0], versionInfo[1], versionInfo[2], revisionNumber);
 			}
 
-            labelTitle.StringValue = "Subtitle Edit Mac alpha 1";
+            labelTitle.StringValue = "Subtitle Edit Mac alpha 2";
 
 			string aboutText = _language.AboutText1.TrimEnd() + Environment.NewLine +
 				Environment.NewLine +
