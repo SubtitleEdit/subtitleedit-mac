@@ -91,6 +91,12 @@ namespace Edit
                 System.Diagnostics.Process.Start("https://www.google.com/search?q=" + Utilities.UrlEncode(_textWordNotFound.StringValue));
             };
 
+            _buttonUndo.Hidden = true;
+            _buttonUndo.Activated += (object sender, EventArgs e) => 
+                {
+                    (WindowController as SpellCheckController).UndoLastAction();
+                };
+
             _buttonUseSuggestion.Activated += (object sender, EventArgs e) =>
             {
                 int idx = (int)_tableSuggestions.SelectedRow;
@@ -129,6 +135,12 @@ namespace Edit
             {
                 _popUpLanguages.AddItem(language);
             }
+        }
+
+        public void SetUndoButton(bool hidden, string text)
+        {
+            _buttonUndo.Hidden = hidden;
+            _buttonUndo.Title = text;
         }
 
         public void ShowSuggestions(List<string> suggestions)

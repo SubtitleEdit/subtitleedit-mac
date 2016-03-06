@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
@@ -95,6 +96,14 @@
                                     <rect key="frame" x="14" y="35" width="326" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Google it" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fNL-cz-5fT">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button verticalHuggingPriority="750" id="kr8-nV-81b">
+                                    <rect key="frame" x="14" y="2" width="326" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Undo" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="L1O-GE-Ffx">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -320,6 +329,7 @@
                 <outlet property="_buttonGoogleIt" destination="di6-pP-EPh" id="RoX-Qp-5eE"/>
                 <outlet property="_buttonSkipAll" destination="gKC-4S-v11" id="SLa-Bf-BQc"/>
                 <outlet property="_buttonSkipOne" destination="tYT-XV-uuX" id="m1h-oO-gP2"/>
+                <outlet property="_buttonUndo" destination="kr8-nV-81b" id="w4a-Rc-gly"/>
                 <outlet property="_buttonUseSuggestion" destination="LHg-KC-VtN" id="Fbj-TT-PKI"/>
                 <outlet property="_buttonUseSuggestionAlways" destination="YYw-rh-O7k" id="r3W-DH-p9u"/>
                 <outlet property="_checkAutoFixNames" destination="A96-cg-qSt" id="Q6N-wo-4a2"/>

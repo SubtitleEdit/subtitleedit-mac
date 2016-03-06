@@ -37,6 +37,9 @@ namespace Edit
 		AppKit.NSButton _buttonSkipOne { get; set; }
 
 		[Outlet]
+		AppKit.NSButton _buttonUndo { get; set; }
+
+		[Outlet]
 		AppKit.NSButton _buttonUseSuggestion { get; set; }
 
 		[Outlet]
@@ -102,26 +105,6 @@ namespace Edit
 				_buttonSkipOne = null;
 			}
 
-			if (_popUpLanguages != null) {
-				_popUpLanguages.Dispose ();
-				_popUpLanguages = null;
-			}
-
-			if (_progressBar != null) {
-				_progressBar.Dispose ();
-				_progressBar = null;
-			}
-
-			if (_textViewFullText != null) {
-				_textViewFullText.Dispose ();
-				_textViewFullText = null;
-			}
-
-			if (_textWordNotFound != null) {
-				_textWordNotFound.Dispose ();
-				_textWordNotFound = null;
-			}
-
 			if (_buttonUseSuggestion != null) {
 				_buttonUseSuggestion.Dispose ();
 				_buttonUseSuggestion = null;
@@ -137,9 +120,34 @@ namespace Edit
 				_checkAutoFixNames = null;
 			}
 
+			if (_popUpLanguages != null) {
+				_popUpLanguages.Dispose ();
+				_popUpLanguages = null;
+			}
+
+			if (_progressBar != null) {
+				_progressBar.Dispose ();
+				_progressBar = null;
+			}
+
 			if (_tableSuggestions != null) {
 				_tableSuggestions.Dispose ();
 				_tableSuggestions = null;
+			}
+
+			if (_textViewFullText != null) {
+				_textViewFullText.Dispose ();
+				_textViewFullText = null;
+			}
+
+			if (_textWordNotFound != null) {
+				_textWordNotFound.Dispose ();
+				_textWordNotFound = null;
+			}
+
+			if (_buttonUndo != null) {
+				_buttonUndo.Dispose ();
+				_buttonUndo = null;
 			}
 		}
 	}

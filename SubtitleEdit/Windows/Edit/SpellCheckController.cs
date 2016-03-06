@@ -11,6 +11,7 @@ using Nikse.SubtitleEdit.UILogic;
 using Nikse.SubtitleEdit.Core.Dictionaries;
 using Nikse.SubtitleEdit.Core.SpellCheck;
 using UILogic;
+using Nikse.SubtitleEdit.Core.Enums;
 
 namespace Edit
 {
@@ -103,6 +104,7 @@ namespace Edit
 
         public void SkipOne()
         {
+            PushUndo(string.Format("{0}", Configuration.Settings.Language.SpellCheck.SkipOnce), SpellCheckAction.Skip, _currentSpellCheckWord.Text);
             PrepareNextWord();
         }
 
@@ -110,6 +112,8 @@ namespace Edit
         {
             if (_currentSpellCheckWord.Text == newWord)
                 return;
+
+            PushUndo(string.Format("{0}: {1}", Configuration.Settings.Language.SpellCheck.Change, _currentWord + " > " + newWord), SpellCheckAction.Change, newWord);
 
             _spellChecker.CorrectWord(newWord, _currentParagraph, _currentSpellCheckWord.Text, _currentSpellCheckWord.Index);
             _noOfChangedWords++;
@@ -121,15 +125,23 @@ namespace Edit
             if (_currentSpellCheckWord.Text == newWord)
                 return;
 
+            PushUndo(string.Format("{0}: {1}", Configuration.Settings.Language.SpellCheck.ChangeAll, _currentWord + " > " + newWord), SpellCheckAction.ChangeAll, newWord);
+
             if (!_changeAllDictionary.ContainsKey(_currentWord))
                 _changeAllDictionary.Add(_currentWord, newWord);
             _spellChecker.CorrectWord(newWord, _currentParagraph, _currentSpellCheckWord.Text, _currentSpellCheckWord.Index);
             _noOfChangedWords++;
             PrepareNextWord();
+
         }
 
         public void AddToNames(string newWord)
         {
+            if (!_spellCheckWordLists.HasName(newWord))
+            {
+                PushUndo(string.Format("{0}: {1}", Configuration.Settings.Language.SpellCheck.AddToNamesAndIgnoreList, newWord), SpellCheckAction.AddToNamesEtc, newWord);
+            }
+
             _spellCheckWordLists.AddName(newWord);
             if (string.Compare(newWord, _currentWord, StringComparison.OrdinalIgnoreCase) != 0)
                 return; // don't prepare next word if change was more than just casing
@@ -144,8 +156,102 @@ namespace Edit
         public void AddToUserDictionary(string newWord)
         {
             if (_spellCheckWordLists.AddUserWord(newWord))
+            {
+                PushUndo(string.Format("{0}: {1}", Configuration.Settings.Language.SpellCheck.AddToUserDictionary, newWord), SpellCheckAction.AddToDictionary, newWord);
                 _noOfAddedWords++;
+            }
             PrepareNextWord();            
+        }
+
+        private void PushUndo(string text, SpellCheckAction action, string word)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return;
+            }
+
+            if (action == SpellCheckAction.ChangeAll && _changeAllDictionary.ContainsKey(_currentWord))
+                return;
+
+            string format = Configuration.Settings.Language.SpellCheck.UndoX;
+            if (string.IsNullOrEmpty(format))
+                format = "Undo: {0}";
+            string undoText = string.Format(format, text);
+
+            _undoList.Add(new UndoObject
+                {
+                    CurrentIndex = _currentParagraphIndex,
+                    UndoText = undoText,
+                    UndoWord = word,
+                    Action = action,
+                    CurrentWord = _currentWord,
+                    Subtitle = new Subtitle(_subtitle),
+                    NoOfChangedWords = _noOfChangedWords,
+                    NoOfAddedWords = _noOfAddedWords,
+                });
+            Window.SetUndoButton(false, undoText);
+        }
+
+        private void RollbackAndShowCurrentParagraph(Subtitle newSubtitle)
+        {
+            _subtitle.Paragraphs.Clear();
+            _subtitle.Paragraphs.AddRange(newSubtitle.Paragraphs);
+            if (_subtitleParagraphShow != null)
+            {
+                _subtitleParagraphShow.SubtitleParagraphShow(_currentParagraphIndex); // show current line in main window
+            }
+        }
+
+        public void UndoLastAction()
+        {
+            if (_undoList == null || _undoList.Count == 0)
+            {
+                return;
+            }
+
+            var undo = _undoList[_undoList.Count - 1];
+            _currentParagraphIndex = undo.CurrentIndex - 1;
+            _wordsIndex = int.MaxValue - 1;
+            _noOfChangedWords = undo.NoOfChangedWords;
+            _noOfAddedWords = undo.NoOfAddedWords;
+
+            switch (undo.Action)
+            {
+                case SpellCheckAction.Change:
+                    RollbackAndShowCurrentParagraph(undo.Subtitle);
+                    break;
+                case SpellCheckAction.ChangeAll:
+                    RollbackAndShowCurrentParagraph(undo.Subtitle);
+                    _changeAllDictionary.Remove(undo.CurrentWord);
+                    break;
+                case SpellCheckAction.Skip:
+                    break;
+                case SpellCheckAction.SkipAll:
+                    _skipAllList.Remove(undo.UndoWord.ToUpper());
+                    if (undo.UndoWord.EndsWith('\'') || undo.UndoWord.StartsWith('\''))
+                        _skipAllList.Remove(undo.UndoWord.ToUpper().Trim('\''));
+                    break;
+                case SpellCheckAction.AddToDictionary:
+                    _spellCheckWordLists.RemoveUserWord(undo.UndoWord);
+                    break;
+                case SpellCheckAction.AddToNamesEtc:
+                    _spellCheckWordLists.RemoveName(undo.UndoWord);
+                    break;
+                case SpellCheckAction.ChangeWholeText:
+                    RollbackAndShowCurrentParagraph(undo.Subtitle);
+                    break;
+            }
+
+            _undoList.RemoveAt(_undoList.Count - 1);
+            if (_undoList.Count > 0)
+            {
+                Window.SetUndoButton(false, _undoList[_undoList.Count - 1].UndoText);
+            }
+            else
+            {
+                Window.SetUndoButton(true, string.Empty);
+            }
+            PrepareNextWord();
         }
 
         public void SetAutoFixState(bool autoFixNames)
