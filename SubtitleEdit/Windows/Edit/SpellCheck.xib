@@ -36,7 +36,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button verticalHuggingPriority="750" id="tuh-2M-xk3">
-                                    <rect key="frame" x="14" y="164" width="163" height="32"/>
+                                    <rect key="frame" x="14" y="164" width="177" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dVe-IM-ZGv">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -53,7 +53,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button verticalHuggingPriority="750" id="v83-AW-MRt">
-                                    <rect key="frame" x="177" y="164" width="163" height="32"/>
+                                    <rect key="frame" x="191" y="164" width="175" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Change all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qd8-Ut-d56">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -61,7 +61,7 @@
                                     </buttonCell>
                                 </button>
                                 <button verticalHuggingPriority="750" id="tYT-XV-uuX">
-                                    <rect key="frame" x="14" y="131" width="163" height="32"/>
+                                    <rect key="frame" x="14" y="131" width="177" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Skip one" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H2B-Ib-KeL">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -69,7 +69,7 @@
                                     </buttonCell>
                                 </button>
                                 <button verticalHuggingPriority="750" id="jpO-th-jbG">
-                                    <rect key="frame" x="14" y="98" width="326" height="32"/>
+                                    <rect key="frame" x="14" y="98" width="352" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Add to names/noise list (case sensitive)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Op-MW-o4j">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -77,23 +77,15 @@
                                     </buttonCell>
                                 </button>
                                 <button verticalHuggingPriority="750" id="0UH-tu-Gfd">
-                                    <rect key="frame" x="14" y="65" width="326" height="32"/>
+                                    <rect key="frame" x="14" y="65" width="352" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Add to user dictionary" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uVm-yv-zPq">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
-                                <button verticalHuggingPriority="750" id="gKC-4S-v11">
-                                    <rect key="frame" x="177" y="131" width="163" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Skip all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ykN-9z-68e">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                </button>
                                 <button verticalHuggingPriority="750" id="di6-pP-EPh">
-                                    <rect key="frame" x="14" y="35" width="326" height="32"/>
+                                    <rect key="frame" x="14" y="35" width="352" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Google it" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fNL-cz-5fT">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -101,9 +93,17 @@
                                     </buttonCell>
                                 </button>
                                 <button verticalHuggingPriority="750" id="kr8-nV-81b">
-                                    <rect key="frame" x="14" y="2" width="326" height="32"/>
+                                    <rect key="frame" x="14" y="2" width="352" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Undo" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="L1O-GE-Ffx">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button verticalHuggingPriority="750" id="gKC-4S-v11">
+                                    <rect key="frame" x="191" y="131" width="175" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Skip all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ykN-9z-68e">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
