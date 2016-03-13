@@ -69,8 +69,9 @@ namespace Nikse.SubtitleEdit.Windows
                 InvokeOnMainThread(() =>
                     {
                         _timerWaveform.Stop();
+
                         System.Threading.Thread.Sleep(100);
-                        if (_videoFileName != null)
+                        if (_videoFileName != null && _audioVisualizer != null)
                         {
                             int index = -1;
                             var selectedIndices = Window.SubtitleTable.SelectedRows.ToList();
@@ -281,6 +282,16 @@ namespace Nikse.SubtitleEdit.Windows
                 Window.SetEncoding(Encoding.UTF8.BodyName);
                 Window.SubtitleText.StringValue = string.Empty;
                 Window.SetTimeCode(new Paragraph());
+                if (_videoPlayer != null)
+                {
+                    _videoPlayer.DisposeVideoPlayer();
+                }
+                if (_audioVisualizer != null)
+                {
+                    _audioVisualizer.WavePeaks = null;
+                }
+                _videoFileName = null;
+                _audioVisualizer = null;
             }
         }
 
@@ -361,6 +372,11 @@ namespace Nikse.SubtitleEdit.Windows
 
         public void ReloadDataKeepSelection()
         {
+            if (_subtitle == null || _subtitle.Paragraphs.Count == 0)
+            {
+                return;
+            }
+
             var selectedIndices = Window.SubtitleTable.SelectedRows;
             Window.SubtitleTable.ReloadData();
             foreach (var index in selectedIndices)

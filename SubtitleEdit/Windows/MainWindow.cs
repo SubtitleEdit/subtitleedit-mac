@@ -158,7 +158,6 @@ namespace Nikse.SubtitleEdit.Windows
                 }
             };
             
-
             // drag'n'drop
             _subtitleTable.RegisterForDraggedTypes(new string[] { "public.data" });
         }
@@ -239,10 +238,12 @@ namespace Nikse.SubtitleEdit.Windows
             if (_audioVizBox.Hidden)
             {
                 _toolbarShowAudioViz.Image = NSImage.ImageNamed("WaveformToggle.png");
+                Configuration.Settings.General.ShowAudioVisualizer = false;
             }
             else
             {
                 _toolbarShowAudioViz.Image = NSImage.ImageNamed("WaveformToggleActive.png");
+                Configuration.Settings.General.ShowAudioVisualizer = true;
             }
         }
 
@@ -254,10 +255,12 @@ namespace Nikse.SubtitleEdit.Windows
             if (_videoBox.Hidden)
             {
                 _toolbarShowVideo.Image = NSImage.ImageNamed("VideoToggle.png");
+                Configuration.Settings.General.ShowVideoPlayer = false;
             }
             else
             {
                 _toolbarShowVideo.Image = NSImage.ImageNamed("VideoToggleActive.png");
+                Configuration.Settings.General.ShowVideoPlayer = true;
             }
         }
 
@@ -354,7 +357,14 @@ namespace Nikse.SubtitleEdit.Windows
             _audioVisualizerView.SetFrameSize(_audioViz.Superview.Frame.Size);
             _audioVisualizerView.BecomeFirstResponder();
             _audioViz.Hidden = true;
-            ShowHideAudioVisualizer(); //TODO: Use settings when audio visualizer has been rewritten!
+            if (!Configuration.Settings.General.ShowAudioVisualizer)
+            {
+                ShowHideAudioVisualizer();
+            }
+            if (!Configuration.Settings.General.ShowVideoPlayer)
+            {
+                ShowHideVideoPlayer();
+            }
         }
 
         internal void ShowAddAudioVisualizer()

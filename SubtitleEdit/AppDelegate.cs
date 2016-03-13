@@ -50,15 +50,15 @@ namespace Nikse.SubtitleEdit
                 _mainWindowController.FindPrevious();
             };
 
-            _videoOpen.Activated += (object sender, EventArgs e) => 
+            _videoOpen.Activated += (object sender, EventArgs e) =>
             {
                 _mainWindowController.OpenVideo();
             };
 
-            _menuItemSpellCheck.Activated += (object sender, EventArgs e) => 
-                {
-                    _mainWindowController.SpellCheckAndGrammer();
-                };
+            _menuItemSpellCheck.Activated += (object sender, EventArgs e) =>
+            {
+                _mainWindowController.SpellCheckAndGrammer();
+            };
         }
 
         public NSMenuItem OpenRecent { get { return _openRecent; } }
